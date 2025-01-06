@@ -6,6 +6,7 @@ const members = require('./Members');// This imports the members array from the 
 
 const logger = require('./middleware/logger');// This imports the logger middleware function from the logger.js file
 
+//PORT NUMBER
 const port = process.env.PORT || 5000;// Process.env.PORT is used to get the port number from the environment variable
 
 // Initialize middleware
@@ -22,13 +23,7 @@ app.get('/', (req, res) => {
         title: 'Member App',
         members,
     });
-});
-
-//EXAMPLE 1 (Default Route)
-// This creates a default route that sends a response to the client
-// app.get('/', (req, res) => {
-//     res.send('<h1>Hello World</h1>');
-// }); 
+}); 
 
 // This is used to parse JSON data from the request body
 // This handles both JSON and URL encoded data
@@ -40,6 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 // path.join() is used to join the current directory with the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+//MIDDLEWARE FOR ROUTES
 // This uses the members router from the members.js file
 app.use('/api/members', require('./routes/api/members'));
 
